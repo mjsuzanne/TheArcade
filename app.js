@@ -32,7 +32,7 @@ function playerChange() {
 }
 
 function resultValidation() {
-    let roundWon = false;
+    let playerWon = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = winningConditions[i];
         let a = gameState[winCondition[0]];
@@ -42,19 +42,19 @@ function resultValidation() {
             continue;
         }
         if (a === b && b === c) {
-            roundWon = true;
+            playerWon = true;
             break
         }
     }
 
-    if (roundWon) {
+    if (playerWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         return;
     }
 
-    let roundDraw = !gameState.includes('');
-    if (roundDraw) {
+    let gameDraw = !gameState.includes('');
+    if (gameDraw) {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;

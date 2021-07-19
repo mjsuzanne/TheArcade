@@ -4,6 +4,14 @@ let gameActive = true;
 let currentPlayer = 'X';
 let gameState = ['', '', '', '', '', '', '', '', ''];
 
+const player= (name) =>{
+    name=name;
+    return{name};
+}
+let playerX=player('')
+let playerY=player('')
+
+
 const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `It's a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
@@ -20,6 +28,31 @@ const winningConditions = [
     [0, 4, 8],
     [2, 4, 6]
 ];
+
+function app(){
+    let inputField=document.getElementById(".input-field").focus()
+    
+    const addPlayers = documetn.getElementById('player-form')
+    addPlayers.addEventListener("submit",addPlayers)
+}
+
+function addPlayers(event) {
+    event.preventDefault();
+    if(this.player1.value === '' || this.player2.value ===''){
+        alert('You must enter a name for each filed')
+        return;
+    }
+
+    const playerFormContainer= document.querySelector('.enter-players')
+    playerFormContainer.classList.add ('hide-container');
+
+    playerX.name= this.player1.value
+    playerY.name=this.player2.value
+    
+    app();
+    addPlayers();
+}
+
 
 function cellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
@@ -80,7 +113,7 @@ function restartGame() {
     currentPlayer = 'X';
     gameState = ['', '', '', '', '', '', '', '', ''];
     statusDisplay.innerHTML = currentPlayerTurn();
-    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = '');
 }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClick));

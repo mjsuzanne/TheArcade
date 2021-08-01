@@ -1,15 +1,27 @@
 /* style here */
-* {
-    box-sizing: border-box;
-  }
-  main {
-    display: flex;
-    width: 80vh;
-    flex-wrap: wrap;
-  }
-  .cell {
-    width: 20vh;
-    height: 20vh;
-    font-size: 12vh;
-    border: 1px solid black;
-  }
+body {
+  font-family: 'Arial', sans-serif;
+  color:purple;
+}
+
+section {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: 300px;
+  margin: 50px auto;
+}
+
+.cell {
+  font-family: 'Trebuchet MS';
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 1px purple;
+  border: 1px solid purple;
+  cursor: pointer;
+  font-size: 80px;
+  line-height: 100px; 
+}

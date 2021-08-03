@@ -8,9 +8,14 @@ let gameState = ['', '', '', '', '', '', '', '', ''];
 let playerX=''
 let playerY=''
 
-const winningMessage = () => `Player ${currentPlayer} has won!`;
+const winningMessage = () => `Player ${currentPlayerName()} has won!`;
 const drawMessage = () => `It's a draw!`;
-const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+const currentPlayerTurn = () => `It's ${currentPlayerName()}'s turn`;
+const currentPlayerName = () => {
+    const playerName = currentPlayer === 'X' ? playerX : playerY;
+    console.log ('playerName' , playerName )
+    return playerName;
+}
 
 statusDisplay.innerHTML = currentPlayerTurn();
 
@@ -25,25 +30,26 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
-function addPlayers(){
+function addPlayers(event) {
     console.log('add function has been called')
-    return;
+  const player1Value = document.getElementById ("player1").value
+  console.log (player1Value)
+  const player2Value = document.getElementById ("player2").value
 
-// function addPlayers(event) {
-//     event.preventDefault();
-//     if(this.player1.value === '' || this.player2.value ===''){
-//         alert('You must enter a name for each filed')
-//         return;
-//     }
+    event.preventDefault();
+    if(player1Value === '' || player2Value ===''){
+        alert('You must enter a name for each filed')
+        return;
+    }
 
     // const playerFormContainer= document.querySelector('.enter-players')
     // playerFormContainer.classList.add ('hide-container');
 
-    // playerX.name= this.player1.value
-    // playerY.name=this.player2.value
+    playerX = player1Value
+    playerY = player2Value
+    console.log (playerX)
+    console.log (playerY)
     
-
-    // addPlayers();
 
 }
 
@@ -53,8 +59,9 @@ function cellPlayed(clickedCell, clickedCellIndex) {
 }
 
 function playerChange() {
-    currentPlayer = isPlayerXTurn ? playerX : playerY
-    isPlayerXTurn = !isPlayerXTurn
+    console.log(playerX)
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+    // isPlayerXTurn = !isPlayerXTurn
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
@@ -112,3 +119,4 @@ function restartGame() {
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', cellClick));
 document.querySelector('.restart').addEventListener('click', restartGame); 
+document.querySelector('.submitPlayers').addEventListener('click', addPlayers); 
